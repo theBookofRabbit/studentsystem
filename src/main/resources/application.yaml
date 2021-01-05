@@ -1,0 +1,39 @@
+server:
+  port: 8011
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  datasource: #这里不要写错，不是dataSource
+    # 注意这里用的是数据库名字
+    url: jdbc:mysql://localhost:3306/student_message_manege_system?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root # 数据库账号
+    password: 441523 # 数据库密码
+    # HikariCP 自定义配置，对应 HikariConfig 配置属性类
+    hikari:
+      minimum-idle: 10 # 池中维护的最小空闲连接数，默认为 10 个。
+      maximum-pool-size: 10 # 池中最大连接数，包括闲置和使用中的连接，默认为 10 个。
+  # 对应 RedisProperties 类
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 441523 # Redis 服务器密码，默认为空。生产中，一定要设置 Redis 密码！
+    database: 0 # Redis 数据库号，默认为 0 。
+    timeout: 0 # Redis 连接超时时间，单位：毫秒。0表示不限制。
+    # 对应 RedisProperties.Jedis 内部类
+    jedis:
+      pool:
+        max-active: 8 # 连接池最大连接数，默认为 8 。使用负数表示没有限制。
+        max-idle: 8 # 默认连接数最小空闲的连接数，默认为 8 。使用负数表示没有限制。
+        min-idle: 0 # 默认连接池最小空闲的连接数，默认为 0 。允许设置 0 和 正数。
+        max-wait: -1 # 连接池最大阻塞等待时间，单位：毫秒。默认为 -1 ，表示不限制。
+
+
+# mybatis 配置内容
+mybatis:
+  config-location: classpath:mybatis-config.xml # 配置 MyBatis 配置文件路径
+  #  mapper-locations: classpath:mapper/*.xml # 配置 Mapper XML 地址 #使用mybatis+注解开发不需要xml文件
+  type-aliases-package: cn.xiao.studentsystem.Enitity # 配置数据库实体包路径
+
+
+

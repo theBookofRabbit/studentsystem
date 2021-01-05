@@ -1,0 +1,49 @@
+//创建数据库
+create schema student_message_manege_system;
+
+//创建表
+use student_message_manege_system;
+create table student(
+  num int(25) not null,
+  name char(25) not null,
+  sex char(10) not null,
+  grade char(20) not null,
+  birthday char(20) not null,
+  department char(20) not null,
+  password char(25) not null,
+  primary key(num)
+)engine=InnoDB default charset=utf8;
+
+create table manager(
+  num int(25) not null,
+  name char(25) not null,
+  password char(25) not null,
+  primary key(num)
+)engine=InnoDB default charset=utf8;
+
+//成绩表
+create table results(
+  studentnum int(25) not null,
+  score int(5), -- 没有代表还没考试,但是选了课--
+  coursenum int(25) not null,
+  primary key(studentnum)
+)engine=InnoDB default charset=utf8;
+
+create table course(
+  num int(25) not null,
+  name char(100) not null,
+  credit char(10),
+  coursetime varchar(500) not null,
+  personsnum int(25),
+  primary key(num)
+)engine=InnoDB default charset=utf8;
+
+
+主要功能：
+（1）	学生信息管理：对学生基本信息的增加、修改和删除
+（2）	学生查询：对学生基本信息和成绩的查询
+（3）	学生选课：用于学生选择课程学习
+（4）	学生成绩：对学生各科成绩的添加、修改和删除等管理
+（5）	打印：用来打印学生的基本信息和成绩
+
+
